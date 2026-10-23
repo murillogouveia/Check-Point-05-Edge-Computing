@@ -52,21 +52,9 @@ flowchart LR
     APP[MyMQTT no celular] <-->|Subscribe / Publish| B
 ```
 
-## 5. Arquivos disponibilizados
-
-```text
-CP5_Vinheria_Agnello_PRONTO/
-├── README.md
-├── CP5_Placa_FIAP/
-│   └── CP5_Placa_FIAP.ino
-└── imagens/
-    ├── 01-montagem-fisica.png
-    └── LEIA-ME.txt
-```
-
 O arquivo `.ino` contém o **código usado com sucesso na placa física**, com os mesmos pinos, tópicos e comandos. Para não expor a rede da instituição, **a senha Wi-Fi foi substituída por um campo a preencher**; esta é a única mudança funcional em relação ao código enviado.
 
-## 6. Como reproduzir — passo a passo
+## 5. Como reproduzir — passo a passo
 
 1. **Montagem:** com o ESP32 desconectado, faça as cinco conexões da seção 4, conferindo cada legenda na placa FIAP.
 2. **Arduino IDE:** instale a IDE 2.x. Em **File → Preferences → Additional Boards Manager URLs**, adicione `https://espressif.github.io/arduino-esp32/package_esp32_index.json`.
@@ -80,7 +68,7 @@ O arquivo `.ino` contém o **código usado com sucesso na placa física**, com o
 10. Confirme as leituras de temperatura, umidade, luminosidade e LDR bruto, atualizadas aproximadamente a cada **5 segundos**. Verifique também a conexão Wi-Fi/MQTT.
 11. Configure o **MyMQTT** conforme a seção 7 e execute os testes de recebimento, acionamento e desligamento do LED.
 
-## 7. Configuração MQTT e testes no MyMQTT
+## 6. Configuração MQTT e testes no MyMQTT
 
 | Configuração | Valor |
 |---|---|
@@ -91,7 +79,7 @@ O arquivo `.ino` contém o **código usado com sucesso na placa física**, com o
 | Identificador do dispositivo | `vinheria-mgrg` |
 | Intervalo de publicação | `5000 ms` |
 
-### 7.1 Leitura: receber os dados
+### 6.1 Leitura: receber os dados
 
 No MyMQTT, conecte-se ao broker e assine (**Subscribe**) o tópico:
 
@@ -115,7 +103,7 @@ Os números acima são **um exemplo baseado nas leituras observadas**; as mensag
 
 A luminosidade é uma conversão linear da leitura analógica (`0–4095`), **não uma medição calibrada em lux**. O sentido da escala depende do circuito LDR.
 
-### 7.2 Escrita: ligar e desligar o LED1
+### 6.2 Escrita: ligar e desligar o LED1
 
 No MyMQTT, abra **Publish** e informe sempre o tópico:
 
@@ -143,7 +131,7 @@ Para acompanhar a confirmação, assine:
 
 Respostas previstas pelo código: `vinheria-mgrg@on|LED ligado` e `vinheria-mgrg@off|LED desligado`.
 
-## 8. Resultados observados no hardware físico
+## 7. Resultados observados no hardware físico
 
 Os seguintes testes foram realizados durante a execução presencial:
 
@@ -161,37 +149,11 @@ Os seguintes testes foram realizados durante a execução presencial:
 
 **Limite do escopo validado:** o recebimento MQTT no MyMQTT foi comprovado. O cadastro do dispositivo no IoT Agent, a criação de entidade NGSIv2 no Orion e o armazenamento histórico **não foram comprovados** neste teste; portanto não são apresentados como resultados alcançados.
 
-## 9. Evidências fotográficas
+## 8. Evidências fotográficas
 
 A foto da montagem física já está incluída abaixo. Para as demais evidências, salvar as fotos na pasta `imagens/` e substituir as indicações pelos arquivos reais antes da entrega. Não usar fotos do Wokwi como comprovação de hardware físico.
 
-**Foto 1 — Montagem física ESP32 + placa didática FIAP**
-
-![Montagem física do projeto: ESP32 conectado à placa didática FIAP com LED azul aceso](imagens/01-montagem-fisica.png)
-
-*Figura 1 — Montagem física do projeto Vinheria Agnello: ESP32 conectado à placa didática FIAP, com LED azul aceso.*
-
-**Foto 2 — Arduino IDE: upload concluído**
-
-`imagens/02-upload-concluido.jpg` — [ESPAÇO PARA FOTO COM 100% E VERIFICAÇÃO]
-
-**Foto 3 — Monitor Serial com as leituras**
-
-`imagens/03-monitor-serial.jpg` — [ESPAÇO PARA FOTO DAS LEITURAS DO DHT11 E LDR]
-
-**Foto 4 — MyMQTT recebendo telemetria**
-
-`imagens/04-mymqtt-leituras.jpg` — [ESPAÇO PARA CAPTURA DO SUBSCRIBE]
-
-**Foto 5 — MyMQTT enviando comandos / LED1 aceso**
-
-`imagens/05-led-ligado.jpg` — [ESPAÇO PARA CAPTURA OU FOTO DO LED ACESO]
-
-**Foto 6 — MyMQTT enviando comando / LED1 apagado**
-
-`imagens/06-led-desligado.jpg` — [ESPAÇO PARA CAPTURA OU FOTO DO LED APAGADO]
-
-## 10. Simulação ilustrativa no Wokwi (atividade complementar)
+## 9. Simulação ilustrativa no Wokwi (atividade complementar)
 
 Além da montagem com **ESP32 e placa didática FIAP físicos**, desenvolvemos **em casa** uma simulação no **Wokwi**, com a finalidade de **ilustrar o funcionamento e a proposta do projeto** e facilitar sua visualização.
 
@@ -199,7 +161,7 @@ Além da montagem com **ESP32 e placa didática FIAP físicos**, desenvolvemos *
 
 > **Importante:** a simulação é um material **complementar e ilustrativo**. A implementação apresentada e testada presencialmente foi feita com **componentes físicos**, conforme as fotos, o código-fonte e os testes documentados neste repositório. A simulação não substitui a demonstração prática.
 
-## 11. Problemas comuns
+## 10. Problemas comuns
 
 | Problema | Como resolver |
 |---|---|
